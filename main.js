@@ -5,7 +5,13 @@ let signUpBtn = document.querySelector("#signup");
 let identifier = document.querySelector("#identifier");
 let password = document.querySelector("#password");
 let bookList = document.querySelector("#bookList");
-let bookImage = document.querySelector("#img")
+let bookImage = document.querySelector("#img");
+let modal = document.querySelector("#myModal");
+let span = document.getElementsByClassName("close")[0];
+let executeRegister = document.querySelector("#register");
+
+
+
 
 let login = async () => {
   let response = await axios.post("http://localhost:1337/api/auth/local", {
@@ -31,15 +37,25 @@ let getBooks = async () => {
 
 
 let register = async () => {
+  let username = document.querySelector("#username");
+  let password = document.querySelector("#password");
+  let email = document.querySelector("#email");
+  console.log(username.value);
   let response = await axios.post("http://localhost:1337/api/auth/local/register", {
-    username: "nisse",
-    password: "nisse123",
-    email: "nisse@company.com"
+    username: username.value,
+    password: password.value,
+    email: email.value
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json'
+    }
   });
   console.log(response);
   sessionStorage.setItem("token", response.data.jwt);
   //renderPage();
 };
+
 
 let createProfile = async () => {
   let response = await axios.post("http://localhost:1337/api/profiles",{
@@ -77,6 +93,19 @@ async function getProfiles(){
 let renderPage = async () => {
   loginBtn.addEventListener("click", login);
   logoutBtn.addEventListener("click", logout);
+  executeRegister.addEventListener("click", register);
+  signUpBtn.onclick = function(){
+    modal.style.display = "block";
+  }
+  span.onclick = function(){
+    console.log("hey");
+    modal.style.display = "none";
+  }
+  window.onclick = function(event){
+    if (event.target == modal){
+      modal.style.display = "none";
+    }
+  }
   let books = await getBooks();
   console.log(books);
 
