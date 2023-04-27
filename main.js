@@ -37,19 +37,14 @@ let getBooks = async () => {
 
 
 let register = async () => {
-  let username = document.querySelector("#username");
-  let password = document.querySelector("#password");
-  let email = document.querySelector("#email");
-  console.log(username.value);
+  let usernameReg = document.querySelector("#usernameReg");
+  let passwordReg = document.querySelector("#passwordReg");
+  let emailReg = document.querySelector("#emailReg");
+  console.log(`${usernameReg.value} -- ${passwordReg.value} -- ${emailReg.value}`);
   let response = await axios.post("http://localhost:1337/api/auth/local/register", {
-    username: username.value,
-    password: password.value,
-    email: email.value
-  },
-  {
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    username: usernameReg.value,
+    password: passwordReg.value,
+    email: emailReg.value
   });
   console.log(response);
   sessionStorage.setItem("token", response.data.jwt);
