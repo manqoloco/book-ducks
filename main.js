@@ -5,6 +5,7 @@ let signUpBtn = document.querySelector("#signup");
 let identifier = document.querySelector("#identifier");
 let password = document.querySelector("#password");
 let bookList = document.querySelector("#bookList");
+let bookImage = document.querySelector("#img")
 
 let login = async () => {
   let response = await axios.post("http://localhost:1337/api/auth/local", {
@@ -97,7 +98,10 @@ let renderPage = async () => {
     //   <img src="http://localhost:1337${book.cover?.url}" height="100" />
     //   </li>`;
     // });
-  } else {
+    // när man loggar ut kommer listan igen
+ 
+}
+   else {
     presentBooks(books);
     console.log("NOT authenticated");
     signUpBtn.hidden = false;
@@ -117,7 +121,11 @@ let getMe = async () => {
   }
   );
   return response.data;
+
 }
+
+// for each book, img src localhost ${book.cover.url}
+// "url":"/uploads/small_catcher_8a21e74a8a.jpg"
 
 function presentBooks(books){
   books.forEach((book, index) => {
@@ -126,12 +134,49 @@ function presentBooks(books){
     let cell1 = row.insertCell(1);
     let cell2 = row.insertCell(2);
     let cell3 = row.insertCell(3);
+    let cell4 = row.insertCell(4);
+    let cell5 = row.insertCell(5);
     cell0.innerHTML = book.id;
     cell1.innerHTML = book.attributes.Title;
     cell2.innerHTML = book.attributes.Author;
     cell3.innerHTML = book.attributes.Rating;
+    cell4.innerHTML = book.attributes.cover?.url;
+    cell5.innerHTML = `<li>
+    <button class="addBtn">Add</button>
+    </li>` ;
   })
 }
+
+
+// pic function
+
+async function getImage() {
+    
+  const url = '<http://localhost:1337/api/books?populate=deep,3>'
+
+  const options = {
+      method: "GET"
+  }
+
+  let response = await fetch(url, options)
+
+  if (response.status === 200) {
+      
+      const imageBlob = await response.blob()
+      const imageObjectURL = URL.createObjectURL(imageBlob);
+
+      const image = document.createElement('img')
+      image.src = imageObjectURL
+
+      const container = document.getElementById("#img")
+      container.append(image)
+  }
+  else {
+      console.log("HTTP-Error: " + response.status)
+  }
+}
+
+// add book function
 
 let addBook = async () => {
 
@@ -165,6 +210,39 @@ let addBook = async () => {
       );
     });
 };
+
+// adding to list
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  var buttons = document.querySelectorAll(".addBtn");
+
+  var list1 = document.getElementById("bookList");
+
+  var list2 = document.getElementById("list2");
+
+      function moveItem(e) {
+      var newItem = document.createElement("li");
+
+      if (this.parentElement.parentElement.id === "list1") {
+          list2.appendChild(newItem);
+
+
+      } else {
+          list1.appendChild(newItem);
+
+      }
+
+      newItem.innerHTML = this.parentElement.innerHTML;
+      this.parentElement.parentNode.removeChild(this.parentElement);
+
+  }
+
+  for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", moveItem);
+  }
+
+})
 
 //document.querySelector("#addBook").addEventListener("click", addBook);
 //loginBtn.addEventListener("click", login);

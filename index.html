@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Strapi Books</h1>
+    <header>
+      <h1>Strapi Books
+        <img src="/images/icon.png" id="icon" alt="">
+      </h1>
+      
+    </header>
     <div id="authentication-box">
     <h2>Login</h2>
     <div class="greeting hidden">
-      <h2>welcome! logged in as <span id="user"></span></h2>
+      <h2>welcome! logged in as <span id="showUser"> </span></h2>
     </div>
     <nav>
     <input type="text" id="identifier" placeholder="username"/> 
@@ -22,24 +27,35 @@
     <button id="login">Login</button>
     <button id="logout">Logout</button>
     <button id="signup">Sign up</button>
-    <span id="showUser"> </span>
    </nav>
   </div>
-    <h2>Add Book</h2>
-    <input type="text" placeholder="Name" id="bookName" />
-    <input type="file" id="bookImage" />
-    <button id="addBook">Add book</button>
-    <hr />
-    <h2>My Books</h2>
+   
+    <h2>Books</h2>
     <table id="bookList">
       <tr>
         <th>Id</th>
         <th>Title</th>
         <th>Author</th>
         <th>Avg score</th>
+        <th>
+          <img id="img" src="" alt="">Image</th>
+          <th> Add </th>
       </tr>
+      </table>
+
+      <h2>My list</h2>
+      <table id="myList">
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Avg score</th>
+          <th>
+            <img id="img" src="" alt="">Image</th>
+        </tr>
+      
     </table>
-    
+    <footer>©Copyright</footer>
   </body>
 </html>
 
