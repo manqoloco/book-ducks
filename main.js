@@ -25,7 +25,7 @@ let logout = () => {
 }
 
 let getBooks = async () => {
-  let response = await axios.get("http://localhost:1337/api/books");
+  let response = await axios.get("http://localhost:1337/api/books?populate=*");
   return response.data.data;
 }
 
@@ -140,41 +140,13 @@ function presentBooks(books){
     cell1.innerHTML = book.attributes.Title;
     cell2.innerHTML = book.attributes.Author;
     cell3.innerHTML = book.attributes.Rating;
-    cell4.innerHTML = book.attributes.cover?.url;
-    cell5.innerHTML = `<li>
-    <button class="addBtn">Add</button>
-    </li>` ;
+    cell4.innerHTML = `<img src="http://localhost:1337${book.attributes.cover.data.attributes.url}"></img>`;
+    cell5.innerHTML = `<button class="addBtn">Add</button>` ;
   })
 }
 
 
-// pic function
 
-async function getImage() {
-    
-  const url = '<http://localhost:1337/api/books?populate=deep,3>'
-
-  const options = {
-      method: "GET"
-  }
-
-  let response = await fetch(url, options)
-
-  if (response.status === 200) {
-      
-      const imageBlob = await response.blob()
-      const imageObjectURL = URL.createObjectURL(imageBlob);
-
-      const image = document.createElement('img')
-      image.src = imageObjectURL
-
-      const container = document.getElementById("#img")
-      container.append(image)
-  }
-  else {
-      console.log("HTTP-Error: " + response.status)
-  }
-}
 
 // add book function
 
