@@ -9,6 +9,7 @@ let bookImage = document.querySelector("#img");
 let modal = document.querySelector("#myModal");
 let span = document.getElementsByClassName("close")[0];
 let executeRegister = document.querySelector("#register");
+let addBtn = document.queryCommandIndeterm("#addBtn");
 
 
 
@@ -89,11 +90,13 @@ let renderPage = async () => {
   loginBtn.addEventListener("click", login);
   logoutBtn.addEventListener("click", logout);
   executeRegister.addEventListener("click", register);
+  addBtn.onclick = function () {
+    console.log("hey");
+  }
   signUpBtn.onclick = function(){
     modal.style.display = "block";
   }
   span.onclick = function(){
-    console.log("hey");
     modal.style.display = "none";
   }
   window.onclick = function(event){
@@ -116,6 +119,7 @@ let renderPage = async () => {
     logoutBtn.style.display = "block";
     identifier.value = "";
     password.value = "";
+    //addBtn.??
     // response.data.books.forEach((book) => {
     //   bookList.innerHTML += `<li>
     //   <h3>Name:${book.Title}</h3>
@@ -165,7 +169,7 @@ function presentBooks(books){
     cell2.innerHTML = book.attributes.Author;
     cell3.innerHTML = book.attributes.Rating;
     cell4.innerHTML = `<img src="http://localhost:1337${book.attributes.cover.data.attributes.url}"></img>`;
-    cell5.innerHTML = `<button class="addBtn">Add</button>` ;
+    cell5.innerHTML = `<button id="addBtn" class="addBtn">Add</button>` ;
   })
 }
 
@@ -246,6 +250,111 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //createProfile();
 renderPage();
+
+// gör om
+
+
+
+
+async function addToList(id) {
+  if (login()) {
+      let data = await getData("http://localhost:1337/api/users/me?populate=deep")
+      
+      let arr = data.books
+      arr = arr.map(x => x.id)
+
+      arr.push(id)
+      getMe(arr, data.id)
+      modal()
+      
+      return true
+  } else {
+      modalLogin()
+      return false
+  }
+}
+
+
+
+// stolen
+
+function avarageRating(ratingArr) {
+  if (ratingArr.length == 0) {
+    return undefined;
+  }
+  let ratingSum = 0;
+  ratingArr.forEach((currentNum) => {
+    //här plusar jag på den nuvarande siffran på den totala summan av ratings.
+    ratingSum += currentNum;
+  });
+
+  let amountOfNumbers = ratingArr.length;
+  let avarage = ratingSum / amountOfNumbers;
+
+  //här avrundar jag ett tal till utan decimaler.
+  return Math.round(avarage);
+}
+
+async function getSavedBooks() {
+  let userFromLocalStorage = localStorage.getItem("user");
+  let user = JSON.parse(userFromLocalStorage);
+
+  if (!user) {
+    return;
+  }
+  let response = await fetch(
+    "http://localhost:1337/api/saved-books?populate[book][populate][0]=Image&populate[book][populate][1]=ratings&populate=user",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.jwt}`,
+      },
+    }
+  );
+  let data = await response.json();
+  let books = data.data;
+
+  const mySavedBooks = books.filter((book) => {
+    if (book.attributes.user.data.id === user.user.id) {
+      return book;
+    }
+  });
+
+  return mySavedBooks;
+}
+
+async function getMyRatings() {
+  let userFromLocalStorage = localStorage.getItem("user");
+  let user = JSON.parse(userFromLocalStorage);
+
+  if (!user) {
+    return;
+  }
+  let response = await fetch(
+    "http://localhost:1337/api/ratings?populate=user&populate=book",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.jwt}`,
+      },
+    }
+  );
+  let data = await response.json();
+  let books = data.data;
+
+  const myRatedBooks = books.filter((book) => {
+    if (book.attributes.user.data.id === user.user.id) {
+      return book;
+    }
+  });
+
+  return myRatedBooks;
+}
+
+
+// other page, stolen
+
+
 
 
 
