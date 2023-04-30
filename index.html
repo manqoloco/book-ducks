@@ -18,8 +18,8 @@
     </header>
     <div id="authentication-box">
     <h2>Login</h2>
-    <div class="greeting hidden">
-      <h2>welcome! logged in as <span id="showUser"> </span></h2>
+    <div class="greeting-hidden">
+      <h2 id="showUser"></h2>
     </div>
     <nav>
     <input type="text" id="identifier" placeholder="username"/> 
@@ -40,17 +40,16 @@
       </p>
     </div>
    </div>
-  </div>
+  </div>  
    
     <h2>Books</h2>
     <table id="bookList">
       <tr>
         <th>Id</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Avg score</th>
+        <th><button onClick="sort('title')" >Title</button></th>
+        <th><button onClick="sort('author')" >Author</button></th>
+        <th><button onClick="sort('averageScore')" >Avg score</button></th>
         <th> Image </th>
-          <th> Add </th>
       </tr>
       </table>
 
@@ -71,42 +70,3 @@
 
 
 
-<!--
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="main.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Strapi - Todo applikation</h1>
-    <div id="authentication-box">
-      <h2>Register</h2>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="text" id="email" placeholder="Username" />
-      <input type="text" id="registerPassword" placeholder="Password" />
-      <button id="register">Register</button>
-      <h2 style="text-align: center">OR</h2>
-      <h2>Login</h2>
-      <input type="text" id="identifier" placeholder="Username/Email" />
-      <input type="text" id="password" placeholder="Password" />
-      <button id="login">Login</button>
-    </div>
-    <div id="todos-box" class="hidden">
-      <h2>Add Todo</h2>
-      <input type="text" id="todoTitle" placeholder="Title" />
-      <input type="text" id="todoDesc" placeholder="Description" />
-      <button id="addTodo">Add todo</button>
-      <h3>Todos</h3>
-      <ul id="todo-list"></ul>
-      <h3>Completed todos</h3>
-      <ul id="completed-list"></ul>
-    </div>
-  </body>
-</html>
--->

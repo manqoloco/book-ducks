@@ -21,6 +21,10 @@ h2 {
     color: rgb(251, 212, 240);
 }
 
+#buttons {
+    display: flex;
+}
+
 footer {
     background: rgb(117, 42, 133);
     color: white;
@@ -37,8 +41,8 @@ input {
     align-items: left;
     justify-content: left;
     border-radius: 8px;
-    background: rgb(248, 192, 233);
-    opacity: 0.5;
+    background: rgb(255, 236, 250);
+    opacity: 1;
     border: none;
     margin: 2px;
 }
@@ -52,9 +56,17 @@ button {
     border: none;
 }
 
+button:hover {
+    box-shadow: 3px 3px 5px rgb(117, 42, 133);
+    transition-duration: 0.4s;
+}
+
 table {
     background: pink;
     opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 tr {
@@ -63,7 +75,12 @@ tr {
 }
 
 th {
-    padding: 10px;
+    padding: 40px;
+    margin: 10px;
+}
+
+th:nth-child(2) {
+ padding: 50px;
 }
 
 #icon {
