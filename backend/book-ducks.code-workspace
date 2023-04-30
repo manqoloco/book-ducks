@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../olivia-marongiu-cms"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "book-ducks"
+	}
+}

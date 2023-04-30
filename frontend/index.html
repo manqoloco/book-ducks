@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>BookDucks
+        <img src="/images/icon.png" id="icon" alt="">
+      </h1>
+      
+    </header>
+    <div id="authentication-box">
+    <h2>Login</h2>
+    <div class="greeting-hidden">
+      <h2 id="showUser"></h2>
+    </div>
+    <nav>
+    <input type="text" id="identifier" placeholder="username"/> 
+    <input type="text" id="password" placeholder="password"/>
+    <button id="login">Login</button>
+    <button id="logout">Logout</button>
+    <button id="signup">Sign up</button>
+   </nav>
+   <div id="myModal" class="modal">
+
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>
+        <input type="text" id="usernameReg" placeholder="username">
+        <input type="text" id="passwordReg" placeholder="password">
+        <input type="text" id="emailReg" placeholder="email">
+        <button id="register">register</button>
+      </p>
+    </div>
+   </div>
+  </div>  
+   
+    <h2>Books</h2>
+    <table id="bookList">
+      <tr>
+        <th>Id</th>
+        <th><button onClick="sort('title')" >Title</button></th>
+        <th><button onClick="sort('author')" >Author</button></th>
+        <th><button onClick="sort('averageScore')" >Avg score</button></th>
+        <th> Image </th>
+      </tr>
+      </table>
+
+      <h2>My list</h2>
+      <table id="myList">
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Avg score</th>
+          <th>Image</th>
+        </tr>
+      
+    </table>
+    <footer>©Copyright 2023</footer>
+  </body>
+</html>
+
+
+

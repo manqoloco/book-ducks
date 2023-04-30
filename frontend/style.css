@@ -1,0 +1,133 @@
+body {
+    background: linear-gradient(rgb(248, 192, 233), rgb(117, 42, 133));
+}
+
+ h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 1000px;
+    color: rgb(117, 42, 133);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-shadow:2px 2px 5px rgb(244, 204, 204);
+    
+}
+
+h2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    color: rgb(251, 212, 240);
+}
+
+#buttons {
+    display: flex;
+}
+
+footer {
+    background: rgb(117, 42, 133);
+    color: white;
+    display: flex;
+    justify-content: left;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 10px;
+
+}
+
+input {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    border-radius: 8px;
+    background: rgb(255, 236, 250);
+    opacity: 1;
+    border: none;
+    margin: 2px;
+}
+
+button {
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgb(210, 149, 159);
+    background: rgb(248, 192, 233);
+    padding: 5px;
+    margin: 1px;
+    border: none;
+}
+
+button:hover {
+    box-shadow: 3px 3px 5px rgb(117, 42, 133);
+    transition-duration: 0.4s;
+}
+
+table {
+    background: pink;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+tr {
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(54, 35, 35);
+}
+
+th {
+    padding: 40px;
+    margin: 10px;
+}
+
+th:nth-child(2) {
+ padding: 50px;
+}
+
+#icon {
+ width: 80px;
+ height: 80px;
+ padding: 10px;
+}
+
+tr img {
+    width: 50px;
+    height: 70px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
